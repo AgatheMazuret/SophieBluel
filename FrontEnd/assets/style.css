@@ -62,7 +62,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
 section {
 	margin: 130px 0
@@ -226,6 +226,46 @@ footer nav ul {
 
 /* Bandeau édition */
 
+.edit 
+{
+	background-color: black;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 59px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 0px;
+}
+
+.edit button 
+{
+	border: none;
+	font-family: 'Work Sans';
+	font-weight: bold;
+	padding: 10px 15px;
+	border-radius: 20px;
+	margin-top: 45px;
+}
+
+.edit .edition
+{
+	font-weight: normal;
+	border: none;
+	color: white;
+	background: transparent;
+}
+
+.edition:hover {
+	color: #1D6154;
+	cursor: pointer;
+
+}
+.edit .edition i 
+{
+	font-size: 1.3em;
+}
 
 .publish {
 	font-family: 'Work Sans';
@@ -234,11 +274,11 @@ footer nav ul {
 	color: black;
 	background-color: white;
 	padding: 8px;
-	margin-left: 21px;
+	margin-left: 5px;
+	margin-top: 45px;
+	cursor: pointer;
 
 }
-
-
 
 
 /* Page de connexion */
@@ -292,88 +332,299 @@ nav #mentions {
 	margin-top: 319px;
 }
 
-/* Modale Ajouter des photos */
+/* Modale Galery */
 
-.modal {
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.08);
-}
-
-.modalWrapper {
-	overflow: auto;
-	width: 630px;
-	max-width: calc(100vw - 20px);
-	max-height: calc(100vh - 20px);
-	padding: 20px;
+.modaleGalery
+{
+	z-index: 2;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 550px;
 	background-color: white;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
+	padding: 50px 20px;
+	justify-content: center;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
+	border-radius: 10px;
 	align-items: center;
+	gap: 10px;
 }
 
-.close {
+button 
+{
+	border: none;
+}
+
+.modaleGalery .closeModaleGalery
+{
 	display: flex;
 	width: 100%;
-	flex-direction: row;
+	margin-top: -30px;
 	justify-content: flex-end;
-	padding: 32px 36px 0 0;
+	background-color: transparent;
+	border: none;
 }
 
-.modalWrapper h2 {
-	font-family: 'Work Sans';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 26px;
+.modaleGalery i
+{
+	font-size: 1.2em;
+}
+
+.modaleGalery h2 
+{
+	margin-top: 10px;
 	color: black;
-	margin: 60px 0 46px 0;
+	font-size: 1.5em;
+	font-weight: 400;
 }
 
-.modalContainer {
-	width: 70%;
+.modaleGalery .projects 
+{
+	margin-top: 30px;
+	margin-bottom: 50px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 6px;
+	width: 75%;
+	gap: 17px;
 }
 
-.modalContainer img {
-	width: 78px;
-	height: 104px;
+hr 
+{
+	border: 0.1px solid gray;
+	width: 75%;
 }
 
-.addPicture {
+.modaleGalery .projects .project 
+{
+	position: relative;
+	width: 65px;
+	height: 100px;
+}
+
+.modaleGalery .projects .project img 
+{
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.modaleGalery .projects .project p
+{
+	font-size: 0.9em;
+}
+
+.modaleGalery .projects .project button
+{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	top: -20px;
+	right: -15px;
+	border-radius: 0;
+	padding: 4px;
+}
+
+.modaleGalery .projects .project i
+{
+	font-size: 0.7em;
 	color: white;
-	background-color: #1D6154;
-	font-weight: 700;
-	font-size: 14px;
-	padding: 10px 49px 9px 49px;
-	margin: 38px 0 23px 0;
 }
 
-.modalWrapper p {
-	font-family: 'Syne';
+.modaleGalery button 
+{
+	width: 30%;
+}
+
+.modaleGalery .addPhoto 
+{
+	margin-top: 20px;
+	margin-bottom: 0;
+	width: 35%;
+	border: none;
+	font-family: "Syne";
+	font-weight: normal;
+	padding: 9px 15px;
 	font-style: normal;
-	font-weight: 400;
-	font-size: 14px;
-	color: #D65353
+	border-radius: 20px;
+	background-color: #1D6154;
+	color: white;
+	font-size: 0.9em;
 }
 
+.modaleGalery .deletePhoto 
+{
+	background-color: transparent;
+	border: none;
+	color: #D65353;
+	font-family: "Syne";
+	font-style: normal;
+	font-size: 0.8em;
+	margin-top: 5px;
+}
 
-.publish:hover{
+/* Modale Add Pictures */
+
+.modaleAddPhoto
+{
+    z-index: 2;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 550px;
 	background-color: white;
-	color:black;
-	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	padding: 50px 20px;
+	justify-content: center;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
+	border-radius: 10px;
+	align-items: center;
+	gap: 10px;
 }
 
-.modaleGalery{
-	background-color: red;
-	z-index: 999;
+.modaleAddPhoto .iconesCloseReturn
+{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.modaleAddPhoto .iconesCloseReturn i
+{
+	font-size: 1.2em;
+}
+
+.modaleAddPhoto .iconesCloseReturn button 
+{
+    display: flex;
+	margin-top: -30px;
+	justify-content: flex-end;
+	background-color: transparent;
+	border: none;
+}
+
+.modaleAddPhoto h2 
+{
+    margin-top: 10px;
+	color: black;
+	font-size: 1.5em;
+	font-weight: 400;
+    font-family: "Work Sans";
+}
+
+.modaleAddPhoto form 
+{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modaleAddPhoto form .formAddPhoto 
+{
+    margin-top: 20px;
+    background-color: #E8F1F6;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px 20px 0px;
+}
+
+.modaleAddPhoto form .formAddPhoto .thePhoto
+{
+    width: 60%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.modaleAddPhoto form .formAddPhoto .picture
+{
+    object-fit: cover;
+    object-position: center;
+    width: 70px;
+}
+
+.modaleAddPhoto form .formAddPhoto button
+{
+    margin-top: -10px;
+    display: flex;
+    color: #306685;
+    font-family: "Work Sans";
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #cbd6dc;
+    font-size: 0.9em;
+}
+
+.modaleAddPhoto form .formAddPhoto p
+{
+    margin-top: -10px;
+    font-size: 0.8em;
+}
+
+.modaleAddPhoto form #titlePhoto
+{
+    margin-top: 25px;
+}
+
+.modaleAddPhoto form input
+{
+    margin-top: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
+    height: 40px;
+    font-family: "Work Sans";
+}
+
+.modaleAddPhoto form #categoryPhoto
+{
+    margin-top: 20px;
+}
+
+.modaleAddPhoto form select
+{
+    margin-top: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
+    height: 40px;
+    font-family: "Work Sans";
+    color: #6C6C6C;
+}
+
+.modaleAddPhoto form select option
+{
+    color: black;
+}
+
+.modaleAddPhoto form hr
+{
+    margin-top: 50px;
+    width: 100%;
+    color: #B3B3B3;
+}
+
+.modaleAddPhoto form .submitAddPhoto
+{
+    margin-top: 20px;
+    align-self: center;
+    width: 50%;
+    background-color: #1D6154;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-family: "Work Sans";
+    padding: 10px 30px;
 }

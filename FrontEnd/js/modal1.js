@@ -1,53 +1,173 @@
-// Partie HTML modale ajouter des photos
+document.addEventListener('click', (event) => {
+  // Appuyer sur mode édition
+  if (event.target.classList.contains('edition')) {
 
-// document.body.onload = addElement;
+      // Créer le background si il n'existe pas
+      if (!document.querySelector('.background'))
+      {
+          // Créer le background
+          const background = document.createElement('div');
+          background.classList.add('background');
+          document.querySelector('main').appendChild(background)
+      }
 
-function addElement () {
+      // Ouvrir modaleGalery si elle n'existe pas
+      if (!document.querySelector('.modaleGalery'))
+      {
+          // Créer modaleGalery
+          createModaleGalery();
+      }
+      else 
+      {
+          document.querySelector('.modaleGalery').style.display = "flex";
+      }
+  }
+});
 
-    var modal = document.createElement('p').addClasst('modal') ==  <p class="modal"></p>;
+function createModaleGalery()
+{
+  // Créer la modaleGalery
+  const modaleGalery = document.createElement('section');
+  modaleGalery.classList.add('modaleGalery');
 
-    var close = document.createElement('div').addClasst('close') == <div class="close"></div>;
-    var closeIcon = document.createElement('i').addClasst('fa-solid fa-xmark') == <i class="fa-solid fa-xmark"></i>;
-    close.appendChild(closeIcon);
+  // Créer un button closeModaleGalery
+  const closeModaleGalery = document.createElement('button');
+  closeModaleGalery.classList.add('closeModaleGalery');
+  closeModaleGalery.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
-    var modalWrapper = document.createElement('div').addClasst('modalWrapper') == <div class="modalWrapper"></div>;
-    var h2 = document.createElement('h2') == <h2>Galerie photo</h2>;
-    var modalContainer = document.createElement('div').addClasst('modalContainer') == <div class="modalContainer"></div>;
-    var addPicture = document.createElement('button').addClasst('addPicture') == <button class="addPicture">Ajouter une photo</button>;
-    var deleteGal = document.createElement('p').addClasst('delete') == <p>Supprimer la galerie</p>;
-    modalWrapper.appendChild(h2, modalContainer, addPicture, deleteGal)
+  // L'ajouter closeModaleGalery au modaleGalery
+  modaleGalery.appendChild(closeModaleGalery);
 
-// ajouter le nouvel élément créé et son contenu dans le DOM
-  //var blabla = document.getElementById('');
-  //document.body.insertBefore(truc, tructruc);
+  // Créer h2
+  const h2 = document.createElement('h2');
+  h2.innerText = "Galerie Photo";
 
+  // L'ajouter h2 au modaleGalery
+  modaleGalery.appendChild(h2);
+
+  // Créer la div projects
+  const projects = document.createElement('div');
+  projects.classList.add('projects');
+
+  // L'ajouter projects au modaleGalery
+  modaleGalery.appendChild(projects);
+  
+  // Récupérer toutes les images des projects actuels du code
+  const getImagesProjectsOfCode = document.querySelectorAll('.gallery figure img');
+  for (let getImageProject of getImagesProjectsOfCode)
+  {
+      // Créer la div project
+      const project = document.createElement('div');
+      project.classList.add('project');
+
+      // Ajouter project dans projects
+      projects.appendChild(project);
+
+      // Créer l'image
+      const img = document.createElement('img');
+      img.src = getImageProject.src;
+
+      // Créer p
+      const p = document.createElement('p');
+      p.innerText = "éditer";
+
+      // Créer le button poubelle
+      const trash = document.createElement('button');
+      trash.classList.add("trash")
+      trash.innerHTML = '<i class="fa-regular fa-trash-can"></i>'
+
+      // Ajouter l'image, p, et le button dans project
+      project.appendChild(img);
+      project.appendChild(p);
+      project.appendChild(trash);
+  }
+
+  // Créer hr
+  const hr = document.createElement('hr');
+
+  // L'ajouter hr au modaleGalery
+  modaleGalery.appendChild(hr);
+
+  // Créer le button addPhoto et deletePhoto
+  const addPhoto = document.createElement('button');
+  addPhoto.classList.add('addPhoto');
+  addPhoto.innerText = "Ajouter une photo";
+  const deletePhoto = document.createElement('button');
+  deletePhoto.classList.add('deletePhoto');
+  deletePhoto.innerText = "Supprimer la galerie";
+
+  // AJouter addPhoto, deletePhoto au modaleGalery
+  modaleGalery.appendChild(addPhoto);
+  modaleGalery.appendChild(deletePhoto);
+
+  // Ajouter au main
+  document.querySelector('main').appendChild(modaleGalery);
 }
 
-addElement();
+//Close modale
+
+document.addEventListener('click', (event) => {
+  // Appuyer sur fermer
+  if (event.target.classList.contains('fa-xmark')) {
+      closeModales();
+  }
+});
 
 
+function closeModales()
+{    
+  // Supprimer le background
+  document.querySelector('.background').remove()
 
-//Les constantes 
-const editBtn = document.querySelector('#edit')
+  // Close modaleGalery
+  document.querySelector('.modaleGalery').remove()
+  
+  // Close modaleAddPhoto si elle existe
+  if (document.querySelector('.modaleAddPhoto'))
+  {
+      document.querySelector('.modaleAddPhoto').remove();
+  }
+}
 
-//Ouvrir la modale sur la page
+// Projets supprimés
+let projectsTrash = []
 
-editBtn.addEventListener('click', openModal)
+document.addEventListener('click', (event) => {
+  // S'il appuie sur le trash
+  if (event.target.classList.contains("fa-trash-can"))
+  {
+    // Récupérer l'image qui veut être supprimé
+    const img = event.target.parentNode.parentNode.querySelectorAll('*')[0].src;
+    
+    // Récupérer et supprimer tous les éléments ayant cette image
+    const imagesTrash = document.querySelectorAll("img[src='" + img + "']");
+    for (let imageTrash of imagesTrash)
+    {
+      // Récupérer l'id et l'ajouter dans le tableau
+      if (imageTrash.parentNode['id'])
+      {
+        projectsTrash.push(imageTrash.parentNode['id'])
+      }
+      
+      // Delete
+      imageTrash.parentNode.remove();
+    }
+  }
 
-
-
-
-// 1 : Je clique sur le bouton "Modifier" -- > Affichage d'un console.log pour afficher le click 
-// 2 : Créer une fonction pour créer une modale 
-// 2 a : Affichage de la modale avec le CSS 
-// 3 : Dans la modale je dispose d'un bouton qui permet de charger une nouvelle fonction
-// 4 : Quand je clique sur le bouton afficher un console.log("tu ma clické")
-// 5 : Modifier le contenu de la modale par le formulaire 
-// 5 a : Afficher une modale vide avec un toto 
-// 6 : Créer une modale qui prend un titre, un input, catégorie + CSS
-// 7 : 5a -- > Afficher la nouvelle modale. 
-// 8 : Envoyer les informations à l'API
-// 8a : Image, le tire et la catégorie 
-// 9 : Récupérer le retour de l'API success ou error 
-// 10 : Récupérer le retour de l'api portfolio, et retraiter le DOM 
-
+  if (event.target.classList.contains("save"))
+  {
+    console.log(sessionStorage.getItem('token'))
+    // Supprimer l'id du projet actuel
+    for (let idProject of projectsTrash)
+    {
+      fetch("http://localhost:5678/api/works/"+parseInt(idProject), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+          }
+      })
+      .catch(error => console.error(error));
+    }
+  }
+});

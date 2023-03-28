@@ -1,143 +1,164 @@
+let works = [];
+let file;
+let titlePhoto;
+
 document.addEventListener('click', (event) => {
-    // Appuyer sur ajouter une photo
-    if (event.target.classList.contains('addPhoto')) 
-    {
-        // Ouvrir modaleGalery si elle n'existe pas
-        if (!document.querySelector('.modaleAddPhoto'))
+
+    // Cliquer sur le bouton pour ajotuet et choisir l'image
+    if (event.target.classList.contains('buttonFilePicture')) {
+        // Choisir l'image
+        chooseImage();
+    }
+
+    // Cliquer sur le button submitAddPhoto pour l'afficher
+    if (event.target.classList.contains('submitAddPhoto')) {
+        
+        // Récupérer le titre
+        titlePhoto = document.querySelector('.inputTitlePhoto').value;
+
+        // Récupérer la catégorie
+        categoryPhoto = document.querySelector('.optionsPhoto').value;
+
+        if (titlePhoto.trim().length > 0 && categoryPhoto != 0)
         {
-            // Cacher modaleGalery
-            document.querySelector('.modaleGalery').style.display = "none";
-            
-            // Créer modaleAddPhoto
-            createModaleAddPhoto();
+            // Créer la data pour le POST
+            works.push({
+                "image": file,
+                "title": titlePhoto,
+                "category": parseInt(categoryPhoto)
+            })
+
+            // Afficher l'image dans les figures
+            displayImageFigure();
+
+            // Fermer la modale
+            closeModales();
         }
+        else 
+        {
+            if (titlePhoto.trim().length === 0)
+            {
+                if (!document.querySelector('.errorTitle'))
+                {
+                    let errorTitle = document.createElement('p');
+                    errorTitle.classList.add('errorTitle');
+                    errorTitle.innerText = "Veuillez choisir un titre";
+                    errorTitle.style.textAlign = "center";
+                    errorTitle.style.marginTop = "10px";
+                    document.querySelector('.addPhotoForm').appendChild(errorTitle)
+                }
+            }
+
+            if (categoryPhoto == 0)
+            {
+                if (!document.querySelector('.errorCategory'))
+                {
+                    let errorCategory = document.createElement('p');
+                    errorCategory.classList.add('errorCategory');
+                    errorCategory.innerText = "Veuillez choisir une catégorie";
+                    errorCategory.style.textAlign = "center";
+                    errorCategory.style.marginTop = "10px";
+                    document.querySelector('.addPhotoForm').appendChild(errorCategory)
+                }
+            }
+        }
+    }
+
+    // Publier
+    if (event.target.classList.contains('save')) {        
+        save();
     }
 });
 
-function createModaleAddPhoto()
+function chooseImage() {
+    // créer un input de type "file"
+    const input = document.createElement("input");
+    input.type = "file";
+
+    // Ouvrir le gestionnaire afin de choisir l'image
+    input.click();
+
+    // Écouter les changements
+    input.addEventListener("change", (event) => {
+        // récupérer le fichier sélectionné
+        file = event.target.files[0];
+
+        // l'afficher
+        displayImagePicture();
+    });
+}
+
+function displayImagePicture() {
+    // Créer l'image
+    const img = document.createElement("img");
+    img.classList.add('thePhoto');
+
+    // Changer la source de l'image
+    img.src = URL.createObjectURL(file);
+
+    // Enlever la picture, buttonFilePicture, p
+    document.querySelector('.picture').remove();
+    document.querySelector('.buttonFilePicture').remove();
+    document.querySelector('.formAddPhoto p').remove();
+
+    // L'ajouter à l'endroit voulu
+    document.querySelector('.formAddPhoto').appendChild(img);
+}
+
+function displayImageFigure()
 {
-    // Créer la modaleGalery
-    const modaleAddPhoto = document.createElement('section');
-    modaleAddPhoto.classList.add('modaleAddPhoto');
+    // Créer une figure
+    const figure = document.createElement('figure');
 
-    // Créer la div iconesCloseReturn
-    const iconesCloseReturn = document.createElement('div');
-    iconesCloseReturn.classList.add('iconesCloseReturn');
+    // Créer l'image du projet
+    const image = document.createElement('img');
+    image.src = document.querySelector('.thePhoto').src;
+    image.alt = titlePhoto;
 
-    // Ajouter iconesCloseReturn à modaleAddPhoto
-    modaleAddPhoto.appendChild(iconesCloseReturn);
+    // Créer le figcaption pour le titre
+    const figcaption = document.createElement('figcaption');
+    figcaption.innerText = titlePhoto;
 
-    // Créer les deux boutons pour iconesCloseReturn
-    const buttonReturn = document.createElement('button');
-    buttonReturn.classList.add('return');
-    buttonReturn.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
-    const buttonClose = document.createElement('button');
-    buttonClose.classList.add('closeModaleAddPhoto');
-    buttonClose.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    // Les ajouter à la figure
+    figure.appendChild(image);
+    figure.appendChild(figcaption);
 
-    // Ajouter return et closeModaleAddPhoto à iconesCloseReturn
-    iconesCloseReturn.appendChild(buttonReturn);
-    iconesCloseReturn.appendChild(buttonClose);
+    // L'jouter à la gallery
+    document.querySelector('.gallery').appendChild(figure);
+}
 
-    // Créer le h2
-    const h2 = document.createElement('h2');
-    h2.innerText = "Ajout photo";
+function closeModales()
+{    
+    // Supprimer le background
+    document.querySelector('.background').remove()
+
+    // Close modaleGalery
+    document.querySelector('.modaleGalery').remove()
     
-    // AJouter le h2 à modaleAddPhoto
-    modaleAddPhoto.appendChild(h2);
+    // Close modaleAddPhoto si elle existe
+    if (document.querySelector('.modaleAddPhoto'))
+    {
+        document.querySelector('.modaleAddPhoto').remove();
+    }
+}
 
-    // Créer le form
-    const form = document.createElement('form');
-    form.classList.add('addPhotoForm')
-    // Ajouter le form au modaleAddPhoto
-    modaleAddPhoto.appendChild(form);
-
-    // Créer la div formAddPhoto
-    const formAddPhoto = document.createElement('div');
-    formAddPhoto.classList.add('formAddPhoto');
-
-    // L'ajouter à form
-    form.appendChild(formAddPhoto);
-
-    // Créer l'image, le button, et p pour formAddPhoto
-    const picture = document.createElement('img');
-    picture.classList.add('picture');
-    picture.src = "assets/images/picture.jpg";
-    const buttonAjouterPhoto = document.createElement('button');
-    buttonAjouterPhoto.setAttribute('type', 'button');
-    buttonAjouterPhoto.classList.add('buttonFilePicture');
-    buttonAjouterPhoto.innerHTML = '<i class="fa-solid fa-plus"></i> Ajouter photo';
-    const p = document.createElement('p');
-    p.innerText = "jpg, png : 4mo max";
-
-    // L'ajouter à formAddPhoto
-    formAddPhoto.appendChild(picture);
-    formAddPhoto.appendChild(buttonAjouterPhoto);
-    formAddPhoto.appendChild(p);
-
-    // Créer un label et input
-    const titlePhoto = document.createElement('label');
-    titlePhoto.setAttribute('for', 'titlePhoto');
-    titlePhoto.setAttribute('id', 'titlePhoto');
-    titlePhoto.innerText = "Titre";
+function save() { 
     
-    const inputTitlePhoto = document.createElement('input');
-    inputTitlePhoto.setAttribute("type", "text");
-    inputTitlePhoto.setAttribute("name", "titlePhoto");
-    inputTitlePhoto.classList.add('inputTitlePhoto');
-
-    // Les ajouter au form
-    form.appendChild(titlePhoto);
-    form.appendChild(inputTitlePhoto);
-
-    // label et select
-    const categoryPhoto = document.createElement('label');
-    categoryPhoto.setAttribute('for', 'categoryPhoto');
-    categoryPhoto.setAttribute('id', 'categoryPhoto');
-    categoryPhoto.innerText = "Catégorie";
-
-    const select = document.createElement("select");
-    select.setAttribute("name", "categoryPhoto");
-    select.setAttribute("class", "optionsPhoto");
-    
-    const option0 = document.createElement("option");
-    option0.setAttribute("value", "0");
-    
-    const option1 = document.createElement("option");
-    option1.setAttribute("value", "1");
-    option1.appendChild(document.createTextNode("Objets"));
-    
-    const option2 = document.createElement("option");
-    option2.setAttribute("value", "2");
-    option2.appendChild(document.createTextNode("Appartements"));
-
-    const option3 = document.createElement("option");
-    option3.setAttribute("value", "3");
-    option3.appendChild(document.createTextNode("Hôtels & restaurants"));
-
-    // Les ajouter au form
-    form.appendChild(categoryPhoto);
-    select.appendChild(option0);
-    select.appendChild(option1);
-    select.appendChild(option2);
-    select.appendChild(option3);
-    form.appendChild(select);
-
-    // HR
-    const hr = document.createElement('hr');
-
-    // L'ajouter
-    form.appendChild(hr)
-
-    // Créer un button submitAddPhoto
-    const submitAddPhoto = document.createElement('button');
-    submitAddPhoto.setAttribute('type', 'button');
-    submitAddPhoto.classList.add('submitAddPhoto');
-    submitAddPhoto.innerText = 'Valider';
-
-    // L'ajouter
-    form.appendChild(submitAddPhoto);
-
-    // Ajouter au main
-    document.querySelector('main').appendChild(modaleAddPhoto)
+    for (let work of works)
+    {   
+        let formdata = new FormData();
+        formdata.append("image", work.image, work.image.name);
+        formdata.append("title", work.title);
+        formdata.append("category", work.category);
+         
+        fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                "accept": "application/json",
+                "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+            },
+            body: formdata
+        })
+        .catch(error => console.log(error));
+    }
 }

@@ -1,108 +1,162 @@
 document.addEventListener('click', (event) => {
-
- 
-    // Appuyer sur mode édition
-    if (event.target.classList.contains('edition')) {
-
-        // Créer le background si il n'existe pas
-        if (!document.querySelector('.background'))
-        {
-            // Créer le background
-            const background = document.createElement('div');
-            background.classList.add('background');
-            document.querySelector('main').appendChild(background)
-        }
-
+    // Appuyer sur ajouter une photo
+    if (event.target.classList.contains('addPhoto')) 
+    {
         // Ouvrir modaleGalery si elle n'existe pas
-        if (!document.querySelector('.modaleGalery'))
+        if (!document.querySelector('.modaleAddPhoto'))
         {
-            // Créer modaleGalery
-            createModaleGalery();
-        }
-        else 
-        {
-            document.querySelector('.modaleGalery').style.display = "flex";
+            // Cacher modaleGalery
+            document.querySelector('.modaleGalery').style.display = "none";
+            
+            // Créer modaleAddPhoto
+            createModaleAddPhoto();
         }
     }
 });
 
-function createModaleGalery()
+function createModaleAddPhoto()
 {
-
     // Créer la modaleGalery
-    const modaleGalery = document.createElement('section');
-    modaleGalery.classList.add('modaleGalery');
+    const modaleAddPhoto = document.createElement('section');
+    modaleAddPhoto.classList.add('modaleAddPhoto');
 
-    // Créer un button closeModaleGalery
-    const closeModaleGalery = document.createElement('button');
-    closeModaleGalery.classList.add('closeModaleGalery');
-    closeModaleGalery.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    // Créer la div iconesCloseReturn
+    const iconesCloseReturn = document.createElement('div');
+    iconesCloseReturn.classList.add('iconesCloseReturn');
 
-    // L'ajouter closeModaleGalery au modaleGalery
-    modaleGalery.appendChild(closeModaleGalery);
+    // Ajouter iconesCloseReturn à modaleAddPhoto
+    modaleAddPhoto.appendChild(iconesCloseReturn);
 
-    // Créer h2
+    // Créer les deux boutons pour iconesCloseReturn
+    const buttonReturn = document.createElement('button');
+    buttonReturn.classList.add('return');
+    buttonReturn.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+    const buttonClose = document.createElement('button');
+    buttonClose.classList.add('closeModaleAddPhoto');
+    buttonClose.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+    // Ajouter return et closeModaleAddPhoto à iconesCloseReturn
+    iconesCloseReturn.appendChild(buttonReturn);
+    iconesCloseReturn.appendChild(buttonClose);
+
+    // Créer le h2
     const h2 = document.createElement('h2');
-    h2.innerText = "Galerie Photo";
-
-    // L'ajouter h2 au modaleGalery
-    modaleGalery.appendChild(h2);
-
-    // Créer la div projects
-    const projects = document.createElement('div');
-    projects.classList.add('projects');
-
-    // L'ajouter projects au modaleGalery
-    modaleGalery.appendChild(projects);
+    h2.innerText = "Ajout photo";
     
-    // Récupérer toutes les images des projects actuels du code
-    const getImagesProjectsOfCode = document.querySelectorAll('.gallery figure img');
-    for (let getImageProject of getImagesProjectsOfCode)
-    {
-        // Créer la div project
-        const project = document.createElement('div');
-        project.classList.add('project');
+    // AJouter le h2 à modaleAddPhoto
+    modaleAddPhoto.appendChild(h2);
 
-        // Ajouter project dans projects
-        projects.appendChild(project);
+    // Créer le form
+    const form = document.createElement('form');
+    form.classList.add('addPhotoForm')
+    // Ajouter le form au modaleAddPhoto
+    modaleAddPhoto.appendChild(form);
 
-        // Créer l'image
-        const img = document.createElement('img');
-        img.src = getImageProject.src;
+    // Créer la div formAddPhoto
+    const formAddPhoto = document.createElement('div');
+    formAddPhoto.classList.add('formAddPhoto');
 
-        // Créer p
-        const p = document.createElement('p');
-        p.innerText = "éditer";
+    // L'ajouter à form
+    form.appendChild(formAddPhoto);
 
-        // Créer le button poubelle
-        const trash = document.createElement('button');
-        trash.classList.add("trash")
-        trash.innerHTML = '<i class="fa-regular fa-trash-can"></i>'
+    // Créer l'image, le button, et p pour formAddPhoto
+    const picture = document.createElement('img');
+    picture.classList.add('picture');
+    picture.src = "assets/images/picture.jpg";
+    const buttonAjouterPhoto = document.createElement('button');
+    buttonAjouterPhoto.setAttribute('type', 'button');
+    buttonAjouterPhoto.classList.add('buttonFilePicture');
+    buttonAjouterPhoto.innerHTML = '<i class="fa-solid fa-plus"></i> Ajouter photo';
+    const p = document.createElement('p');
+    p.innerText = "jpg, png : 4mo max";
 
-        // Ajouter l'image, p, et le button dans project
-        project.appendChild(img);
-        project.appendChild(p);
-        project.appendChild(trash);
-    }
+    // L'ajouter à formAddPhoto
+    formAddPhoto.appendChild(picture);
+    formAddPhoto.appendChild(buttonAjouterPhoto);
+    formAddPhoto.appendChild(p);
 
-    // Créer hr
+    // Créer un label et input
+    const titlePhoto = document.createElement('label');
+    titlePhoto.setAttribute('for', 'titlePhoto');
+    titlePhoto.setAttribute('id', 'titlePhoto');
+    titlePhoto.innerText = "Titre";
+    
+    const inputTitlePhoto = document.createElement('input');
+    inputTitlePhoto.setAttribute("type", "text");
+    inputTitlePhoto.setAttribute("name", "titlePhoto");
+    inputTitlePhoto.classList.add('inputTitlePhoto');
+
+    // Les ajouter au form
+    form.appendChild(titlePhoto);
+    form.appendChild(inputTitlePhoto);
+
+    // label et select
+    const categoryPhoto = document.createElement('label');
+    categoryPhoto.setAttribute('for', 'categoryPhoto');
+    categoryPhoto.setAttribute('id', 'categoryPhoto');
+    categoryPhoto.innerText = "Catégorie";
+
+    const select = document.createElement("select");
+    select.setAttribute("name", "categoryPhoto");
+    select.setAttribute("class", "optionsPhoto");
+    
+    const option0 = document.createElement("option");
+    option0.setAttribute("value", "0");
+    
+    const option1 = document.createElement("option");
+    option1.setAttribute("value", "1");
+    option1.appendChild(document.createTextNode("Objets"));
+    
+    const option2 = document.createElement("option");
+    option2.setAttribute("value", "2");
+    option2.appendChild(document.createTextNode("Appartements"));
+
+    const option3 = document.createElement("option");
+    option3.setAttribute("value", "3");
+    option3.appendChild(document.createTextNode("Hôtels & restaurants"));
+
+    // Les ajouter au form
+    form.appendChild(categoryPhoto);
+    select.appendChild(option0);
+    select.appendChild(option1);
+    select.appendChild(option2);
+    select.appendChild(option3);
+    form.appendChild(select);
+
+    // HR
     const hr = document.createElement('hr');
 
-    // L'ajouter hr au modaleGalery
-    modaleGalery.appendChild(hr);
+    // L'ajouter
+    form.appendChild(hr)
 
-    // Créer le button addPhoto et deletePhoto
-    const addPhoto = document.createElement('button');
-    addPhoto.classList.add('addPhoto');
-    addPhoto.innerText = "Ajouter une photo";
-    const deletePhoto = document.createElement('button');
-    deletePhoto.classList.add('deletePhoto');
-    deletePhoto.innerText = "Supprimer la galerie";
+    // Créer un button submitAddPhoto
+    const submitAddPhoto = document.createElement('button');
+    submitAddPhoto.setAttribute('type', 'button');
+    submitAddPhoto.classList.add('submitAddPhoto');
+    submitAddPhoto.innerText = 'Valider';
 
-    // AJouter addPhoto, deletePhoto au modaleGalery
-    modaleGalery.appendChild(addPhoto);
-    modaleGalery.appendChild(deletePhoto);
+    // L'ajouter
+    form.appendChild(submitAddPhoto);
 
     // Ajouter au main
-    document.querySelector('main').appendChild(modaleGalery);
+    document.querySelector('main').appendChild(modaleAddPhoto)
+}
+
+// Retourner à la modale galerie
+
+document.addEventListener('click', (event) => {
+    // Appuyer sur retourner
+    if (event.target.classList.contains('fa-arrow-left')) {
+        returnModaleGalery();
+    }
+});
+
+
+function returnModaleGalery()
+{ 
+    // Close modaleAddPhoto
+    document.querySelector('.modaleAddPhoto').remove();
+
+    // Afficher modaleGalery étant en display none
+    document.querySelector('.modaleGalery').style.display = "flex";
 }
