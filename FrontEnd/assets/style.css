@@ -52,6 +52,62 @@ table {
 }
 /** end reset css**/
 
+/* Bandeau édition */
+
+.edit 
+{
+	background-color: black;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 59px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 0px;
+}
+
+.edit button 
+{
+	border: none;
+	font-family: 'Work Sans';
+	font-weight: bold;
+	padding: 10px 15px;
+	border-radius: 20px;
+	margin-top: 5px;
+}
+
+.edit .edition
+{
+	font-weight: normal;
+	border: none;
+	color: #FFFEF8;
+	background: transparent;
+}
+
+.edition:hover {
+	font-weight: bold;
+	cursor: pointer;
+
+}
+.edit .edition i 
+{
+	font-size: 1.3em;
+}
+
+.publish {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	color: black;
+	background-color: #FFFEF8;
+	padding: 8px;
+	margin-left: 5px;
+	cursor: pointer;
+
+}
+
+/* Body */
 
 body {
 	max-width: 1140px;
@@ -65,7 +121,7 @@ header {
 	margin: 50px 0;
 }
 section {
-	margin: 130px 0
+	margin: 100px 0
 }
 
 h1{
@@ -98,6 +154,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 nav a {
@@ -106,7 +163,7 @@ nav a {
 }
 
 li:hover {
-	color: #B1663C;
+	font-weight: bold;
 }
 #introduction {
 	display: flex;
@@ -131,34 +188,60 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+.modifyPicture {
+	margin-left: 55px;
+	margin-top: 15px;
+	background-color: #FFFEF8;
+	cursor: pointer;
+	
+}
+
+.modifyPicture:hover, .modifyProject:hover {
+	background-color: #FFFEF8;
+	font-weight: bold;
+	color: black;
+}
+
+.modifyPicture i, .modifyProject i{
+	margin-right: 5px;
+}
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
 
+.modifyProject {
+	margin-left: 10px;
+	background-color: #FFFEF8;
+	cursor: pointer;
+}
+
+
+/* Catégories */
+
 .categories {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-
-	
 }
 
-
-.btn, button {
+.categories button {
 	border: 1px solid #1D6154;
 	border-radius: 60px;
 	margin: 25px 10px 50px 0;
 	font: inherit;
 	font-family: 'Syne';
 	color: #1D6154;
-	padding: 8px;
+	padding: 10px;
+	cursor: pointer;
 	
 }
 
 .btn:hover, button:hover {
 	background-color: #1D6154;
-	color: white;
+	color: #FFFEF8;
 }
 
 .gallery {
@@ -208,13 +291,18 @@ margin: auto;
 input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
-	color: white;
+	color: #FFFEF8;
 	background-color: #1D6154;
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
 	border: #1D6154 solid 1px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #3D3D3D;
 }
 
 footer nav ul {
@@ -223,62 +311,6 @@ footer nav ul {
 	margin: 2em
 }
 
-
-/* Bandeau édition */
-
-.edit 
-{
-	background-color: black;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 59px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 0px;
-}
-
-.edit button 
-{
-	border: none;
-	font-family: 'Work Sans';
-	font-weight: bold;
-	padding: 10px 15px;
-	border-radius: 20px;
-	margin-top: 45px;
-}
-
-.edit .edition
-{
-	font-weight: normal;
-	border: none;
-	color: white;
-	background: transparent;
-}
-
-.edition:hover {
-	color: #1D6154;
-	cursor: pointer;
-
-}
-.edit .edition i 
-{
-	font-size: 1.3em;
-}
-
-.publish {
-	font-family: 'Work Sans';
-	font-style: normal;
-	font-weight: 400;
-	color: black;
-	background-color: white;
-	padding: 8px;
-	margin-left: 5px;
-	margin-top: 45px;
-	cursor: pointer;
-
-}
 
 
 /* Page de connexion */
@@ -319,6 +351,8 @@ footer nav ul {
 	background-color: #1D6154;
 	color: #FFFEF8;
 	width: 50%;
+	border-radius: 20px;
+	cursor: pointer;
 	
 }
 
@@ -326,6 +360,7 @@ footer nav ul {
 	margin-left: 119px;
 	text-decoration: underline;
 	color: #3D3D3D;
+	cursor: pointer;
 }
 
 nav #mentions {
@@ -334,23 +369,35 @@ nav #mentions {
 
 /* Modale Galery */
 
+.background{
+		
+	background: rgba(0,0,0,0.5);
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top:0;
+	left: 0;
+}
+
+
 .modaleGalery
 {
 	z-index: 2;
 	position: absolute;
-	top: 45%;
+	top: 70%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 550px;
-	background-color: white;
+	width: 630px;
+	height: 731px;
+	background-color: #FFFEF8;
 	display: flex;
 	flex-direction: column;
-	padding: 50px 20px;
+	padding: 20px 20px;
 	justify-content: center;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
 	border-radius: 10px;
 	align-items: center;
-	gap: 10px;
+	gap: 30px;
 }
 
 button 
@@ -364,8 +411,13 @@ button
 	width: 100%;
 	margin-top: -30px;
 	justify-content: flex-end;
-	background-color: transparent;
+	background-color: #FFFEF8;
 	border: none;
+}
+
+.closeModaleGalery:hover {
+	color: #3D3D3D;
+	cursor: pointer;
 }
 
 .modaleGalery i
@@ -389,7 +441,7 @@ button
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 75%;
-	gap: 17px;
+	gap: 20px;
 }
 
 hr 
@@ -401,13 +453,14 @@ hr
 .modaleGalery .projects .project 
 {
 	position: relative;
-	width: 65px;
+	width: 78px;
 	height: 100px;
 }
 
 .modaleGalery .projects .project img 
 {
-	height: 100%;
+	height: 104px;
+	width: 78px;
 	object-fit: cover;
 	object-position: center;
 }
@@ -424,16 +477,24 @@ hr
 	justify-content: center;
 	align-items: center;
 	background-color: black;
-	top: -20px;
-	right: -15px;
-	border-radius: 0;
-	padding: 4px;
+
+	border-radius: 3px;
+	padding: 5px;
+}
+.trash{
+	top: 5px;
+	right: 5px;
+}
+
+.move {
+	top: 5px;
+	right: 30px;
 }
 
 .modaleGalery .projects .project i
 {
 	font-size: 0.7em;
-	color: white;
+	color: #FFFEF8;
 }
 
 .modaleGalery button 
@@ -453,8 +514,13 @@ hr
 	font-style: normal;
 	border-radius: 20px;
 	background-color: #1D6154;
-	color: white;
+	color: #FFFEF8;
 	font-size: 0.9em;
+	cursor: pointer;
+}
+
+.modaleGalery .addPhoto:hover {
+	background-color: #3D3D3D;
 }
 
 .modaleGalery .deletePhoto 
@@ -466,6 +532,7 @@ hr
 	font-style: normal;
 	font-size: 0.8em;
 	margin-top: 5px;
+	cursor: pointer;
 }
 
 /* Modale Add Pictures */
@@ -474,25 +541,27 @@ hr
 {
     z-index: 2;
 	position: absolute;
-	top: 45%;
+	top: 70%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 550px;
-	background-color: white;
+	width: 630px;
+	height: 670px;
+	background-color: #FFFEF8;
 	display: flex;
 	flex-direction: column;
 	padding: 50px 20px;
 	justify-content: center;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 	border-radius: 10px;
 	align-items: center;
-	gap: 10px;
+	gap: 20px;
 }
 
 .modaleAddPhoto .iconesCloseReturn
 {
 	display: flex;
 	width: 100%;
+	height: 40px;
 	justify-content: space-between;
 }
 
@@ -504,24 +573,29 @@ hr
 .modaleAddPhoto .iconesCloseReturn button 
 {
     display: flex;
-	margin-top: -30px;
+	margin-top: -35px;
 	justify-content: flex-end;
 	background-color: transparent;
 	border: none;
 }
 
+.closeModaleAddPhoto:hover, .return:hover {
+	color: #3D3D3D;
+	cursor: pointer;
+}
+
 .modaleAddPhoto h2 
 {
-    margin-top: 10px;
 	color: black;
-	font-size: 1.5em;
+	font-size: 26px;
 	font-weight: 400;
     font-family: "Work Sans";
+	margin-bottom: 80px;
 }
 
 .modaleAddPhoto form 
 {
-    width: 75%;
+    width: 70%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -530,18 +604,19 @@ hr
 .modaleAddPhoto form .formAddPhoto 
 {
     margin-top: 20px;
+	margin-bottom: 30px;
     background-color: #E8F1F6;
     display: flex;
     gap: 20px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0px 20px 0px;
 }
 
 .modaleAddPhoto form .formAddPhoto .thePhoto
 {
-    width: 60%;
+    width: 135px;
+	height: 210px;
     object-fit: cover;
     object-position: center;
 }
@@ -569,15 +644,19 @@ hr
     font-size: 0.9em;
 }
 
-.modaleAddPhoto form .formAddPhoto p
+.modaleAddPhoto form 
 {
     margin-top: -10px;
     font-size: 0.8em;
 }
 
+.formAddPhoto p {
+	margin-bottom: 6px;
+}
+
 .modaleAddPhoto form #titlePhoto
 {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .modaleAddPhoto form input
@@ -591,13 +670,13 @@ hr
 
 .modaleAddPhoto form #categoryPhoto
 {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .modaleAddPhoto form select
 {
     margin-top: 5px;
-    border: none;
+    border: white solid;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.09);
     height: 40px;
     font-family: "Work Sans";
@@ -622,9 +701,14 @@ hr
     align-self: center;
     width: 50%;
     background-color: #1D6154;
-    color: white;
+    color: #FFFEF8;
     border-radius: 20px;
     border: none;
     font-family: "Work Sans";
     padding: 10px 30px;
+	cursor: pointer;
+}
+
+.modaleAddPhoto form .submitAddPhoto:hover {
+	background-color: #3D3D3D;
 }

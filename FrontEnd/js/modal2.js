@@ -7,6 +7,7 @@ document.addEventListener('click', (event) => {
         {
             // Cacher modaleGalery
             document.querySelector('.modaleGalery').style.display = "none";
+        
             
             // Créer modaleAddPhoto
             createModaleAddPhoto();
@@ -16,6 +17,7 @@ document.addEventListener('click', (event) => {
 
 function createModaleAddPhoto()
 {
+
     // Créer la modaleGalery
     const modaleAddPhoto = document.createElement('section');
     modaleAddPhoto.classList.add('modaleAddPhoto');
@@ -140,6 +142,7 @@ function createModaleAddPhoto()
 
     // Ajouter au main
     document.querySelector('main').appendChild(modaleAddPhoto)
+
 }
 
 // Retourner à la modale galerie

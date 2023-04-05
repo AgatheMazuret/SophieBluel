@@ -1,10 +1,10 @@
-let works = [];
+
 let file;
 let titlePhoto;
 
 document.addEventListener('click', (event) => {
-
-    // Cliquer sur le bouton pour ajotuet et choisir l'image
+    let works = [];
+    // Cliquer sur le bouton pour ajouter et choisir l'image
     if (event.target.classList.contains('buttonFilePicture')) {
         // Choisir l'image
         chooseImage();

@@ -2,6 +2,7 @@ const loginForm = document.querySelector("form");
 const emailField = document.querySelector("#email");
 const passwordField = document.querySelector("#password");
 const loginButton = document.querySelector(".login");
+const editBanner = document.querySelector(".edit");
 
 loginButton.addEventListener("click", function () {
   const infos = {
@@ -17,16 +18,17 @@ loginButton.addEventListener("click", function () {
     .then((response) => {
       if (response.status === 200) {
         return response.json();
-      } else {
-        console.log("Erreur identifiant ou mot de passe incorrect");
-      }
+        }
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("connected", true);
       window.location.href = "./index.html";
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    
+    
+
+    
 });
+
+
