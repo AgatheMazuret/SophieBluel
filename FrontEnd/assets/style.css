@@ -394,7 +394,6 @@ nav #mentions {
 	display: flex;
 	flex-direction: column;
 	padding: 20px 20px;
-	justify-content: center;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
 	border-radius: 10px;
 	align-items: center;
@@ -410,7 +409,6 @@ button
 {
 	display: flex;
 	width: 100%;
-	margin-top: -30px;
 	justify-content: flex-end;
 	background-color: #FFFEF8;
 	border: none;
