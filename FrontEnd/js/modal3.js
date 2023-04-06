@@ -3,13 +3,15 @@ let file;
 let titlePhoto;
 
 document.addEventListener('click', (event) => {
+
+
     let works = [];
     // Cliquer sur le bouton pour ajouter et choisir l'image
     if (event.target.classList.contains('buttonFilePicture')) {
         // Choisir l'image
         chooseImage();
     }
-
+   
     // Cliquer sur le button submitAddPhoto pour l'afficher
     if (event.target.classList.contains('submitAddPhoto')) {
         
@@ -18,6 +20,8 @@ document.addEventListener('click', (event) => {
 
         // Récupérer la catégorie
         categoryPhoto = document.querySelector('.optionsPhoto').value;
+
+       
 
         if (titlePhoto.trim().length > 0 && categoryPhoto != 0)
         {
@@ -61,6 +65,11 @@ document.addEventListener('click', (event) => {
                     document.querySelector('.addPhotoForm').appendChild(errorCategory)
                 }
             }
+            
+            if (file === undefined){
+               console.log("il manque l'image")
+            }
+            
         }
     }
 
@@ -89,6 +98,8 @@ function chooseImage() {
 }
 
 function displayImagePicture() {
+
+    console.log('ici');
     // Créer l'image
     const img = document.createElement("img");
     img.classList.add('thePhoto');

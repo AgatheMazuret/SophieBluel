@@ -361,6 +361,7 @@ footer nav ul {
 	text-decoration: underline;
 	color: #3D3D3D;
 	cursor: pointer;
+	margin-bottom: 30px;
 }
 
 nav #mentions {
@@ -681,6 +682,7 @@ hr
     height: 40px;
     font-family: "Work Sans";
     color: #6C6C6C;
+	border-radius: 2px;
 }
 
 .modaleAddPhoto form select option
@@ -711,4 +713,9 @@ hr
 
 .modaleAddPhoto form .submitAddPhoto:hover {
 	background-color: #3D3D3D;
+}
+
+.credentials-error > span {
+	color:red;
+	font-size: 20px;
 }

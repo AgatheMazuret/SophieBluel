@@ -80,7 +80,49 @@ if (user != null) {
       ".gallery figure img"
     );
 
+  
+
+    for( i = 0; i < getImagesProjectsOfCode.length; i++){
+      // Créer la div project
+      const project = document.createElement("div");
+      project.classList.add("project");
+
+      // Ajouter project dans projects
+      projects.appendChild(project);
+
+      // Créer l'image
+      const img = document.createElement("img");
+      img.src = getImagesProjectsOfCode[i].src;
+
+      // Créer p
+      const p = document.createElement("p");
+      p.innerText = "éditer";
+
+      // Créer le button poubelle
+      const trash = document.createElement("button");
+      trash.classList.add("trash");
+      trash.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+
+      // Créer button déplacer
+      if(i === 0) {
+        const move = document.createElement("button");
+        move.classList.add("move");
+        move.innerHTML = '<i class="fa-solid fa-arrows-up-down-left-right"></i>';
+        project.appendChild(move);
+      }
+
+      // Ajouter l'image, p, et le button dans project
+      project.appendChild(img);
+      project.appendChild(p);
+      project.appendChild(trash);
+   
+      
+    }
+
+    /*
     for (let getImageProject of getImagesProjectsOfCode) {
+
+      
       // Créer la div project
       const project = document.createElement("div");
       project.classList.add("project");
@@ -111,7 +153,9 @@ if (user != null) {
       project.appendChild(p);
       project.appendChild(trash);
       project.appendChild(move);
+
     }
+    */
 
     // Créer hr
     const hr = document.createElement("hr");

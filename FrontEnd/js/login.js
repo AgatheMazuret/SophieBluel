@@ -4,6 +4,8 @@ const passwordField = document.querySelector("#password");
 const loginButton = document.querySelector(".login");
 const editBanner = document.querySelector(".edit");
 
+const connexion = document.querySelector("#connexion");
+
 loginButton.addEventListener("click", function () {
   const infos = {
     email: emailField.value,
@@ -16,19 +18,21 @@ loginButton.addEventListener("click", function () {
     body: JSON.stringify(infos),
   })
     .then((response) => {
-      if (response.status === 200) {
+      if (response.status != 200) {
+        throw new Error();
+      } else {
         return response.json();
-        }
+      }
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("connected", true);
       window.location.href = "./index.html";
     })
-    
-    
-
-    
+    .catch(() => {
+      const error = document.createElement("div");
+      error.classList.add("credentials-error");
+      error.innerHTML = '<span>Identifiant ou mot de passe incorrect</span>';
+      connexion.appendChild(error);
+    });
 });
-
-
