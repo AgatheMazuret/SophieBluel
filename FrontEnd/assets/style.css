@@ -368,7 +368,7 @@ nav #mentions {
 	margin-top: 319px;
 }
 
-/* Modale Galery */
+/* Modal Gallery */
 
 .background{
 		
@@ -381,7 +381,7 @@ nav #mentions {
 }
 
 
-.modaleGalery
+.modaleGallery
 {
 	z-index: 2;
 	position: absolute;
@@ -405,7 +405,7 @@ button
 	border: none;
 }
 
-.modaleGalery .closeModaleGalery
+.modaleGallery .closeModaleGallery
 {
 	display: flex;
 	width: 100%;
@@ -414,17 +414,17 @@ button
 	border: none;
 }
 
-.closeModaleGalery:hover {
+.closeModaleGallery:hover {
 	color: #3D3D3D;
 	cursor: pointer;
 }
 
-.modaleGalery i
+.modaleGallery i
 {
 	font-size: 1.2em;
 }
 
-.modaleGalery h2 
+.modaleGallery h2 
 {
 	margin-top: 10px;
 	color: black;
@@ -432,7 +432,7 @@ button
 	font-weight: 400;
 }
 
-.modaleGalery .projects 
+.modaleGallery .projects 
 {
 	margin-top: 30px;
 	margin-bottom: 50px;
@@ -449,14 +449,14 @@ hr
 	width: 75%;
 }
 
-.modaleGalery .projects .project 
+.modaleGallery .projects .project 
 {
 	position: relative;
 	width: 78px;
 	height: 100px;
 }
 
-.modaleGalery .projects .project img 
+.modaleGallery .projects .project img 
 {
 	height: 104px;
 	width: 78px;
@@ -464,12 +464,12 @@ hr
 	object-position: center;
 }
 
-.modaleGalery .projects .project p
+.modaleGallery .projects .project p
 {
 	font-size: 0.9em;
 }
 
-.modaleGalery .projects .project button
+.modaleGallery .projects .project button
 {
 	position: absolute;
 	display: flex;
@@ -490,18 +490,18 @@ hr
 	right: 30px;
 }
 
-.modaleGalery .projects .project i
+.modaleGallery .projects .project i
 {
 	font-size: 0.7em;
 	color: #FFFEF8;
 }
 
-.modaleGalery button 
+.modaleGallery button 
 {
 	width: 30%;
 }
 
-.modaleGalery .addPhoto 
+.modaleGallery .addPhoto 
 {
 	margin-top: 20px;
 	margin-bottom: 0;
@@ -518,11 +518,11 @@ hr
 	cursor: pointer;
 }
 
-.modaleGalery .addPhoto:hover {
+.modaleGallery .addPhoto:hover {
 	background-color: #3D3D3D;
 }
 
-.modaleGalery .deletePhoto 
+.modaleGallery .deletePhoto 
 {
 	background-color: transparent;
 	border: none;

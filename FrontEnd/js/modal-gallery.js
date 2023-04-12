@@ -38,42 +38,41 @@ if (user != null) {
         document.querySelector("main").appendChild(background);
       }
 
-      // Ouvrir modaleGalery si elle n'existe pas
-      if (!document.querySelector(".modaleGalery")) {
-        // Créer modaleGalery
-        createModaleGalery();
+      // Ouvrir modaleGallery si elle n'existe pas
+      if (!document.querySelector(".modaleGallery")) {
+        // Créer modaleGallery
+        createModaleGallery();
       } else {
-        document.querySelector(".modaleGalery").style.display = "flex";
+        document.querySelector(".modaleGallery").style.display = "flex";
       }
     }
   });
+// Créer la modaleGallery
+  function createModaleGallery() {
+    const modaleGallery = document.createElement("section");
+    modaleGallery.classList.add("modaleGallery");
 
-  function createModaleGalery() {
-    // Créer la modaleGalery
-    const modaleGalery = document.createElement("section");
-    modaleGalery.classList.add("modaleGalery");
+    // Créer un button closeModaleGallery
+    const closeModaleGallery = document.createElement("button");
+    closeModaleGallery.classList.add("closeModaleGallery");
+    closeModaleGallery.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
-    // Créer un button closeModaleGalery
-    const closeModaleGalery = document.createElement("button");
-    closeModaleGalery.classList.add("closeModaleGalery");
-    closeModaleGalery.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-
-    // L'ajouter closeModaleGalery au modaleGalery
-    modaleGalery.appendChild(closeModaleGalery);
+    // L'ajouter closeModaleGallery au modaleGallery
+    modaleGallery.appendChild(closeModaleGallery);
 
     // Créer h2
     const h2 = document.createElement("h2");
     h2.innerText = "Galerie Photo";
 
-    // L'ajouter h2 au modaleGalery
-    modaleGalery.appendChild(h2);
+    // L'ajouter h2 au modaleGallery
+    modaleGallery.appendChild(h2);
 
     // Créer la div projects
     const projects = document.createElement("div");
     projects.classList.add("projects");
 
-    // L'ajouter projects au modaleGalery
-    modaleGalery.appendChild(projects);
+    // L'ajouter projects au modaleGallery
+    modaleGallery.appendChild(projects);
 
     // Récupérer toutes les images des projects actuels du code
     const getImagesProjectsOfCode = document.querySelectorAll(
@@ -119,49 +118,11 @@ if (user != null) {
       
     }
 
-    /*
-    for (let getImageProject of getImagesProjectsOfCode) {
-
-      
-      // Créer la div project
-      const project = document.createElement("div");
-      project.classList.add("project");
-
-      // Ajouter project dans projects
-      projects.appendChild(project);
-
-      // Créer l'image
-      const img = document.createElement("img");
-      img.src = getImageProject.src;
-
-      // Créer p
-      const p = document.createElement("p");
-      p.innerText = "éditer";
-
-      // Créer le button poubelle
-      const trash = document.createElement("button");
-      trash.classList.add("trash");
-      trash.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-
-      // Créer button déplacer
-      const move = document.createElement("button");
-      move.classList.add("move");
-      move.innerHTML = '<i class="fa-solid fa-arrows-up-down-left-right"></i>';
-
-      // Ajouter l'image, p, et le button dans project
-      project.appendChild(img);
-      project.appendChild(p);
-      project.appendChild(trash);
-      project.appendChild(move);
-
-    }
-    */
-
     // Créer hr
     const hr = document.createElement("hr");
 
-    // L'ajouter hr au modaleGalery
-    modaleGalery.appendChild(hr);
+    // L'ajouter hr au modaleGallery
+    modaleGallery.appendChild(hr);
 
     // Créer le button addPhoto et deletePhoto
     const addPhoto = document.createElement("button");
@@ -171,12 +132,12 @@ if (user != null) {
     deletePhoto.classList.add("deletePhoto");
     deletePhoto.innerText = "Supprimer la galerie";
 
-    // AJouter addPhoto, deletePhoto au modaleGalery
-    modaleGalery.appendChild(addPhoto);
-    modaleGalery.appendChild(deletePhoto);
+    // AJouter addPhoto, deletePhoto au modaleGallery
+    modaleGallery.appendChild(addPhoto);
+    modaleGallery.appendChild(deletePhoto);
 
     // Ajouter au main
-    document.querySelector("main").appendChild(modaleGalery);
+    document.querySelector("main").appendChild(modaleGallery);
   }
 
   //Close modale
@@ -192,8 +153,8 @@ if (user != null) {
     // Supprimer le background
     document.querySelector(".background").remove();
 
-    // Close modaleGalery
-    document.querySelector(".modaleGalery").remove();
+    // Close modaleGallery
+    document.querySelector(".modaleGallery").remove();
 
     // Close modaleAddPhoto si elle existe
     if (document.querySelector(".modaleAddPhoto")) {
@@ -240,47 +201,3 @@ if (user != null) {
   });
 }
 
-// Cas 1 : Utilisateur non connecté
-
-/* 
-  Afficher le bouton connexion 
-  Cacher le boutton logout  (display none)
-*/
-
-// Cas 2 : Utilisateur connecté
-
-/*
-  Cacher le bouton connexion 
-  Afficher le bouton logout
-
-  Afficher la barre d'édition 
-  Afficher les boutons modifier sur la page
-
-
-  //  Afficher la barre d'édition  
-
-  // CONDITION : ETRE CONNECTE
-
-  if (user != null) ... {
-      createNavAdmin();
-      createModalGalery()
-      document.addEventListener('click', (event) => { 
-        
-      }
-  }
-
-  function createNavAdmin()
-  {
-    <div> BTN EDITION / BTN PUBLIER LES CHANGEMENTS </div>
-  }
-
-  function createModaleGalery()...
-
-
-
-  // ICI 
-
-
-
-
-*/

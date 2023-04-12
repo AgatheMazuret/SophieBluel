@@ -133,8 +133,8 @@ function closeModales() {
   // Supprimer le background
   document.querySelector(".background").remove();
 
-  // Close modaleGalery
-  document.querySelector(".modaleGalery").remove();
+  // Close modaleGallery
+  document.querySelector(".modaleGallery").remove();
 
   // Close modaleAddPhoto si elle existe
   if (document.querySelector(".modaleAddPhoto")) {

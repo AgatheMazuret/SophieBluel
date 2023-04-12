@@ -2,11 +2,11 @@ document.addEventListener('click', (event) => {
     // Appuyer sur ajouter une photo
     if (event.target.classList.contains('addPhoto')) 
     {
-        // Ouvrir modaleGalery si elle n'existe pas
+        // Ouvrir modaleGallery si elle n'existe pas
         if (!document.querySelector('.modaleAddPhoto'))
         {
-            // Cacher modaleGalery
-            document.querySelector('.modaleGalery').style.display = "none";
+            // Cacher modaleGallery
+            document.querySelector('.modaleGallery').style.display = "none";
         
             
             // Créer modaleAddPhoto
@@ -18,7 +18,7 @@ document.addEventListener('click', (event) => {
 function createModaleAddPhoto()
 {
 
-    // Créer la modaleGalery
+    // Créer la modaleGallery
     const modaleAddPhoto = document.createElement('section');
     modaleAddPhoto.classList.add('modaleAddPhoto');
 
@@ -145,21 +145,21 @@ function createModaleAddPhoto()
 
 }
 
-// Retourner à la modale galerie
+// Retourner à la modal gallery
 
 document.addEventListener('click', (event) => {
     // Appuyer sur retourner
     if (event.target.classList.contains('fa-arrow-left')) {
-        returnModaleGalery();
+        returnModaleGallery();
     }
 });
 
 
-function returnModaleGalery()
+function returnModaleGallery()
 { 
     // Close modaleAddPhoto
     document.querySelector('.modaleAddPhoto').remove();
 
-    // Afficher modaleGalery étant en display none
-    document.querySelector('.modaleGalery').style.display = "flex";
+    // Afficher modaleGallery étant en display none
+    document.querySelector('.modaleGallery').style.display = "flex";
 }
