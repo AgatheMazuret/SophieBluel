@@ -55,13 +55,13 @@ document.addEventListener("click", (event) => {
 
       if (file === undefined) {
         if (!document.querySelector(".errorPicture")) {
-            let errorPicture = document.createElement("p");
-            errorPicture.classList.add("errorPicture");
-            errorPicture.innerText = "Veuillez ajouter une photo";
-            errorPicture.style.textAlign = "center";
-            errorPicture.style.marginTop = "10px";
-            document.querySelector(".addPhotoForm").appendChild(errorPicture);
-          }
+          let errorPicture = document.createElement("p");
+          errorPicture.classList.add("errorPicture");
+          errorPicture.innerText = "Veuillez ajouter une photo";
+          errorPicture.style.textAlign = "center";
+          errorPicture.style.marginTop = "10px";
+          document.querySelector(".addPhotoForm").appendChild(errorPicture);
+        }
       }
     }
   }

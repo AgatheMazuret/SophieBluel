@@ -1,181 +1,18 @@
-// déclaration de l'url pour récupérer les données
-const url = "http://localhost:5678/api/categories";
-const works = "http://localhost:5678/api/works";
+// Déclaration de l'URL pour récupérer les données
+const apiUrl = "http://localhost:5678/api";
 
+// On déclare les constantes
 const filter = document.getElementById("filter");
 const gallery = document.querySelector(".gallery");
 const showAll = document.querySelector("#filter");
 
-const allCategorie = document.querySelector(".all");
-const objects = document.querySelector(".objects");
-const appartements = document.querySelector(".appartements");
-const hotels = document.querySelector(".hotels")
-/*
+const allCategory = document.querySelector(".all");
+const objectsCategory = document.querySelector(".objects");
+const appartementsCategory = document.querySelector(".appartements");
+const hotelsCategory = document.querySelector(".hotels");
 
-// Création d'une fonction pour récupérer les données
-const getCategories = async (url) => {
-    // fetch (sans METHODE) donc = GET (récupération)
-    await fetch(url)
-    .then(function (response) {
-        // Si l'api retourne un résultat on retourne le résultat en format JSON
-        return response.json()
-    })
-    .then(function (data) {
-        // Si le premier then est ok : on créer une fonction displayCategories qui récupère les données du premier then
-        displayCategories(data)
-    })
-
-    // Dans le cas où l'api retourne un résultat on retourne ou ne fonctionne pas
-    .catch(function (error) {
-        console.log(error)
-    })
-}
-
-// On appel la fonction
-getCategories(url)
-
-
-// Création d'une fonction pour traiter les catégories dans le DOM
-function displayCategories(data) {
-    for (let i = 0; i < data.length; i++) {
-        let button = document.createElement('button')
-        button.classList.add('btn')
-        button.textContent = data[i].name
-      
-        button.addEventListener('click', () => {
-            displayRealisation(works, data[i].id)
-            })
-        
-        filter.appendChild(button)     
-    }
-}
-
-
-
-// Affichage des réalisations
-function displayRealisation(works, id) {
-    fetch(works)
-    .then(function (response) {
-        return response.json()
-    })
-    .then(function (data) {
-        console.log(id)
-
-     for(let work of data){         
-        if(work.categoryId === id){
-
-            let figure = document.createElement('figure')
-            let img = document.createElement('img')
-            let figcaption = document.createElement('figcaption')
-               
-            img.src = work.imageUrl
-            img.alt = work.title         
-            figcaption.textContent = work.title
-
-            figure.appendChild(img)
-            figure.appendChild(figcaption)            
-            gallery[0].appendChild(figure)     
-
-          
-        }
-     }
-
-    })
-    .catch(function (error) {
-        console.log(error)
-    })
-
-}
-
-
-*/
-
-fetch("http://localhost:5678/api/works")
-  .then((res) => res.json())
-  .then((data) => {
-    for (let work of data) {
-      let figure = document.createElement("figure");
-      figure.setAttribute("id", work.id);
-
-      let img = document.createElement("img");
-      let figcaption = document.createElement("figcaption");
-
-      img.src = work.imageUrl;
-      img.alt = work.title;
-      figcaption.textContent = work.title;
-
-      figure.appendChild(img);
-      figure.appendChild(figcaption);
-      gallery.appendChild(figure);
-    }
-  })
-  .catch((err) => console.log(err));
-
-allCategorie.addEventListener("click", () => {
-  fetch("http://localhost:5678/api/works")
-    .then((res) => res.json())
-    .then((data) => {
-      allCategorie.classList.add("active");
-
-      if (allCategorie.classList.contains("active")) {
-        gallery.innerHTML = "";
-      }
-
-      for (let work of data) {
-        let figure = document.createElement("figure");
-        figure.setAttribute("id", work.id);
-
-        let img = document.createElement("img");
-        let figcaption = document.createElement("figcaption");
-
-        img.src = work.imageUrl;
-        img.alt = work.title;
-        figcaption.textContent = work.title;
-
-        figure.appendChild(img);
-        figure.appendChild(figcaption);
-        gallery.appendChild(figure);
-      }
-    });
-});
-
-objects.addEventListener("click", () => {
-  fetch("http://localhost:5678/api/works")
-    .then((res) => res.json())
-    .then((data) => {
-      allCategorie.classList.add("active");
-
-      if (allCategorie.classList.contains("active")) {
-        gallery.innerHTML = "";
-      }
-
-      for (let work of data.filter((work) => work.categoryId === 1)) {
-        displayRealisation(work);
-        /*
-     
-                let figure = document.createElement('figure')
-                figure.setAttribute('id', work.id)
-                        
-                let img = document.createElement('img')
-                let figcaption = document.createElement('figcaption')
-                
-                img.src = work.imageUrl
-                img.alt = work.title         
-                figcaption.textContent = work.title
-        
-                figure.appendChild(img)
-                figure.appendChild(figcaption)            
-                gallery.appendChild(figure) 
-
-                PAR     displayRealisation(work) 
-            */
-      }
-    });
-});
-
-// FUNCTION LE_NOM_QUE_TU_SOUHAITE (PARAMS)
+// Fonction pour afficher une réalisation
 function displayRealisation(work) {
- 
   let figure = document.createElement("figure");
   figure.setAttribute("id", work.id);
 
@@ -194,24 +31,37 @@ function displayRealisation(work) {
   gallery.appendChild(figure);
 }
 
-appartements.addEventListener("click", () => {
-  fetch("http://localhost:5678/api/works")
+// Fonction pour récupérer les réalisations en fonction de la catégorie
+function getRealisationsByCategory(categoryId) {
+  fetch(`${apiUrl}/works`)
     .then((res) => res.json())
     .then((data) => {
       gallery.innerHTML = "";
-      for (let work of data.filter((work) => work.categoryId === 2)) {
-        displayRealisation(work)
+      for (let work of data.filter((work) => work.categoryId === categoryId)) {
+        displayRealisation(work);
       }
-    });
-});
+    })
+    .catch((err) => console.log(err));
+}
 
-hotels.addEventListener("click",() => {
-   fetch("http://localhost:5678/api/works")
-   .then((res) => res.json())
-   .then((data) => {
-    gallery.innerHTML = "";
-    for (let work of data.filter((work) => work.categoryId === 3)) {
-        displayRealisation(work)
-    }
-   });
-});
+// Fonction pour afficher toutes les réalisations
+function showAllRealisations() {
+  fetch(`${apiUrl}/works`)
+    .then((res) => res.json())
+    .then((data) => {
+      gallery.innerHTML = "";
+      for (let work of data) {
+        displayRealisation(work);
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+// On récupère toutes les réalisations au chargement de la page
+window.addEventListener("load", showAllRealisations);
+
+// Événements pour les catégories
+allCategory.addEventListener("click", showAllRealisations);
+objectsCategory.addEventListener("click", () => getRealisationsByCategory(1));
+appartementsCategory.addEventListener("click", () => getRealisationsByCategory(2));
+hotelsCategory.addEventListener("click", () => getRealisationsByCategory(3));

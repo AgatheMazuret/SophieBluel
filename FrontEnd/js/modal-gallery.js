@@ -7,7 +7,7 @@ if (user == null) {
   const logout = document.querySelector("#logout");
   logout.style.display = "none";
   // le bouton pour changer la présentation n'apparaît pas
- const modifyPicture = document.querySelector(".modifyPicture");
+  const modifyPicture = document.querySelector(".modifyPicture");
   modifyPicture.style.display = "none";
   // le bouton pour changer les projets projets n'apparaît pas
   const modifyProject = document.querySelector(".modifyProject");
@@ -47,7 +47,7 @@ if (user != null) {
       }
     }
   });
-// Créer la modaleGallery
+  // Créer la modaleGallery
   function createModaleGallery() {
     const modaleGallery = document.createElement("section");
     modaleGallery.classList.add("modaleGallery");
@@ -79,9 +79,7 @@ if (user != null) {
       ".gallery figure img"
     );
 
-  
-
-    for( i = 0; i < getImagesProjectsOfCode.length; i++){
+    for (i = 0; i < getImagesProjectsOfCode.length; i++) {
       // Créer la div project
       const project = document.createElement("div");
       project.classList.add("project");
@@ -103,10 +101,11 @@ if (user != null) {
       trash.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
       // Créer button déplacer
-      if(i === 0) {
+      if (i === 0) {
         const move = document.createElement("button");
         move.classList.add("move");
-        move.innerHTML = '<i class="fa-solid fa-arrows-up-down-left-right"></i>';
+        move.innerHTML =
+          '<i class="fa-solid fa-arrows-up-down-left-right"></i>';
         project.appendChild(move);
       }
 
@@ -114,8 +113,6 @@ if (user != null) {
       project.appendChild(img);
       project.appendChild(p);
       project.appendChild(trash);
-   
-      
     }
 
     // Créer hr
@@ -200,4 +197,3 @@ if (user != null) {
     }
   });
 }
-
