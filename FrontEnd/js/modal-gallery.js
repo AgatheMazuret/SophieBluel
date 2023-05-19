@@ -30,15 +30,18 @@ if (user != null) {
   const logNav = document.querySelector("#logNav");
   logNav.style.display = "none";
   // Les catégories n'apparaissent plus
-  const category = document.querySelector(".categories")
+  const category = document.querySelector(".categories");
   category.style.display = "none";
   //Créer un margin en dessous de Projets
-  const mesProjects = document.querySelector("#projects")
+  const mesProjects = document.querySelector("#projects");
   mesProjects.style.marginBottom = "80px";
 
   document.addEventListener("click", (event) => {
     // Appuyer sur mode édition
-    if (event.target.classList.contains("modifyProject")) {
+    if (
+      event.target.classList.contains("modifyProject") ||
+      event.target.classList.contains("edition")
+    ) {
       // Créer le background si il n'existe pas
       if (!document.querySelector(".background")) {
         // Créer le background
@@ -46,7 +49,6 @@ if (user != null) {
         background.classList.add("background");
         document.querySelector("main").appendChild(background);
       }
-
 
       // Ouvrir modaleGallery si elle n'existe pas
       if (!document.querySelector(".modaleGallery")) {
@@ -57,6 +59,7 @@ if (user != null) {
       }
     }
   });
+
   // Créer la modaleGallery
   function createModaleGallery() {
     const modaleGallery = document.createElement("section");
@@ -89,7 +92,7 @@ if (user != null) {
       ".gallery figure img"
     );
 
-    for (i = 0; i < getImagesProjectsOfCode.length; i++) {
+    for (let i = 0; i < getImagesProjectsOfCode.length; i++) {
       // Créer la div project
       const project = document.createElement("div");
       project.classList.add("project");
@@ -148,7 +151,6 @@ if (user != null) {
   }
 
   //Close modale
-
   document.addEventListener("click", (event) => {
     // Appuyer sur fermer
     if (event.target.classList.contains("fa-xmark")) {
@@ -183,8 +185,8 @@ if (user != null) {
       const imagesTrash = document.querySelectorAll("img[src='" + img + "']");
       for (let imageTrash of imagesTrash) {
         // Récupérer l'id et l'ajouter dans le tableau
-        if (imageTrash.parentNode["id"]) {
-          projectsTrash.push(imageTrash.parentNode["id"]);
+        if (imageTrash.parentNode.id) {
+          projectsTrash.push(imageTrash.parentNode.id);
         }
 
         // Delete
@@ -202,7 +204,10 @@ if (user != null) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
-        }).catch((error) => console.error(error));
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error(error));
       }
     }
   });

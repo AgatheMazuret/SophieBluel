@@ -139,39 +139,57 @@ function createModaleAddPhoto() {
   // Ajouter au main
   document.querySelector("main").appendChild(modaleAddPhoto);
 
-  // Gérer l'état du bouton en fonction des champs remplis
-  const inputs = [inputTitlePhoto, select];
+  // Gérer l'état du bouton en fonction des champs remplis et de l'image téléchargée
+  let isPictureUploaded = false;
+
   function updateButtonState() {
-    const isFormValid = inputs.every((input) => input.value.trim() !== "");
-    submitAddPhoto.disabled = !isFormValid || picture.src === "assets/images/picture.jpg";
-    submitAddPhoto.style.background = submitAddPhoto.disabled ? "gray" : ""; // Appliquer la couleur de fond gris si le bouton est désactivé
-    
+    const isFormValid =
+      inputTitlePhoto.value.trim() !== "" &&
+      select.value !== "0" &&
+      isPictureUploaded;
+
+    submitAddPhoto.disabled = !isFormValid;
+    submitAddPhoto.style.background = submitAddPhoto.disabled ? "gray" : "";
   }
 
-  inputs.forEach((input) => {
-    input.addEventListener("input", updateButtonState);
-  });
+  // Écouter les événements de saisie des champs
+  inputTitlePhoto.addEventListener("input", updateButtonState);
+  select.addEventListener("change", updateButtonState);
 
   // Vérifier l'état du bouton lorsque la photo est chargée
   buttonAjouterPhoto.addEventListener("click", () => {
-    setTimeout(updateButtonState, 100);
+    picture.classList.add("uploaded");
+    isPictureUploaded = true;
+    updateButtonState();
+  });
+
+  // Vérifier l'état du bouton lorsqu'un fichier est sélectionné
+  buttonAjouterPhoto.addEventListener("change", () => {
+    if (buttonAjouterPhoto.value !== "") {
+      picture.classList.add("uploaded");
+      isPictureUploaded = true;
+    } else {
+      picture.classList.remove("uploaded");
+      isPictureUploaded = false;
+    }
+    updateButtonState();
   });
 
   updateButtonState();
-}
 
-// Retourner à la modal gallery
-document.addEventListener("click", (event) => {
-  // Appuyer sur retourner
-  if (event.target.classList.contains("fa-arrow-left")) {
-    returnModaleGallery();
+  // Retourner à la modal gallery
+  document.addEventListener("click", (event) => {
+    // Appuyer sur retourner
+    if (event.target.classList.contains("fa-arrow-left")) {
+      returnModaleGallery();
+    }
+  });
+
+  function returnModaleGallery() {
+    // Close modaleAddPhoto
+    document.querySelector(".modaleAddPhoto").remove();
+
+    // Afficher modaleGallery étant en display none
+    document.querySelector(".modaleGallery").style.display = "flex";
   }
-});
-
-function returnModaleGallery() {
-  // Close modaleAddPhoto
-  document.querySelector(".modaleAddPhoto").remove();
-
-  // Afficher modaleGallery étant en display none
-  document.querySelector(".modaleGallery").style.display = "flex";
 }
