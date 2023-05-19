@@ -9,9 +9,12 @@ if (user == null) {
   // le bouton pour changer la présentation n'apparaît pas
   const modifyPicture = document.querySelector(".modifyPicture");
   modifyPicture.style.display = "none";
-  // le bouton pour changer les projets projets n'apparaît pas
+  // le bouton pour changer les projets n'apparaît pas
   const modifyProject = document.querySelector(".modifyProject");
   modifyProject.style.display = "none";
+  // le bouton pour changer la description n'apparaît pas
+  const modifyDescription = document.querySelector(".modifyDescription");
+  modifyDescription.style.display = "none";
   // Le bandeau mode édition est caché
   const element = document.querySelector(".edit");
   element.style.display = "none";
@@ -26,6 +29,12 @@ if (user != null) {
   // le bouton login n'apparaît pas
   const logNav = document.querySelector("#logNav");
   logNav.style.display = "none";
+  // Les catégories n'apparaissent plus
+  const category = document.querySelector(".categories")
+  category.style.display = "none";
+  //Créer un margin en dessous de Projets
+  const mesProjects = document.querySelector("#projects")
+  mesProjects.style.marginBottom = "80px";
 
   document.addEventListener("click", (event) => {
     // Appuyer sur mode édition
@@ -37,6 +46,7 @@ if (user != null) {
         background.classList.add("background");
         document.querySelector("main").appendChild(background);
       }
+
 
       // Ouvrir modaleGallery si elle n'existe pas
       if (!document.querySelector(".modaleGallery")) {

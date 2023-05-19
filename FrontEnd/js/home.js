@@ -33,6 +33,12 @@ function displayRealisation(work) {
 
 // Fonction pour récupérer les réalisations en fonction de la catégorie
 function getRealisationsByCategory(categoryId) {
+  // Remise à zéro de la surbrillance des boutons de catégorie
+  resetCategoryButtons();
+
+  // Ajout de la surbrillance au bouton de catégorie sélectionné
+  highlightCategoryButton(categoryId);
+
   fetch(`${apiUrl}/works`)
     .then((res) => res.json())
     .then((data) => {
@@ -46,6 +52,12 @@ function getRealisationsByCategory(categoryId) {
 
 // Fonction pour afficher toutes les réalisations
 function showAllRealisations() {
+  // Remise à zéro de la surbrillance des boutons de catégorie
+  resetCategoryButtons();
+
+  // Ajout de la surbrillance au bouton "Toutes les catégories"
+  allCategory.classList.add("active");
+
   fetch(`${apiUrl}/works`)
     .then((res) => res.json())
     .then((data) => {
@@ -55,6 +67,36 @@ function showAllRealisations() {
       }
     })
     .catch((err) => console.log(err));
+}
+
+// Fonction pour remettre à zéro la surbrillance des boutons de catégorie
+function resetCategoryButtons() {
+  allCategory.classList.remove("active");
+  objectsCategory.classList.remove("active");
+  appartementsCategory.classList.remove("active");
+  hotelsCategory.classList.remove("active");
+}
+
+// Fonction pour mettre en surbrillance le bouton de catégorie sélectionné
+function highlightCategoryButton(categoryId) {
+  let categoryButton;
+
+  switch (categoryId) {
+    case 1:
+      categoryButton = objectsCategory;
+      break;
+    case 2:
+      categoryButton = appartementsCategory;
+      break;
+    case 3:
+      categoryButton = hotelsCategory;
+      break;
+    default:
+      categoryButton = allCategory;
+      break;
+  }
+
+  categoryButton.classList.add("active");
 }
 
 // On récupère toutes les réalisations au chargement de la page

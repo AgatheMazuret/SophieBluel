@@ -168,6 +168,7 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-right: 140px;
 }
 #introduction figure {
 	flex: 1
@@ -197,13 +198,19 @@ li:hover {
 	
 }
 
-.modifyPicture:hover, .modifyProject:hover {
+.modifyDescription {
+	margin-bottom: 20px;
+	background-color: #FFFEF8;
+	cursor: pointer;
+}
+
+.modifyPicture:hover, .modifyProject:hover, .modifyDescription:hover {
 	background-color: #FFFEF8;
 	font-weight: bold;
 	color: black;
 }
 
-.modifyPicture i, .modifyProject i{
+.modifyPicture i, .modifyProject i, .modifyDescription i {
 	margin-right: 5px;
 }
 
@@ -243,6 +250,11 @@ li:hover {
 	background-color: #1D6154;
 	color: #FFFEF8;
 }
+
+.category-button.active {
+	background-color: #1D6154;
+	color: white;
+  }
 
 .gallery {
 	width: 100%;

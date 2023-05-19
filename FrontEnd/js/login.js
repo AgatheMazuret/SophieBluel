@@ -6,8 +6,35 @@ const loginButton = document.querySelector(".login");
 const editBanner = document.querySelector(".edit");
 const connexion = document.querySelector("#connexion");
 
+// Fonction pour vérifier si les champs sont vides
+function checkFields() {
+  if (emailField.value === '' || passwordField.value === '') {
+    alert('Veuillez remplir tous les champs !');
+    return false;
+  }
+  return true;
+}
+
+// Fonction pour vérifier si une adresse e-mail est valide
+function validateEmail(email) {
+  // Expression régulière pour vérifier le format de l'adresse e-mail
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
 // On écoute l'événement click sur le bouton de connexion
 loginButton.addEventListener("click", function () {
+  // Vérification des champs vides
+  if (!checkFields()) {
+    return;
+  }
+
+  // Vérification de l'adresse e-mail
+  if (!validateEmail(emailField.value)) {
+    alert("Veuillez entrer une adresse e-mail valide !");
+    return;
+  }
+
   // On récupère les informations du formulaire
   const infos = {
     email: emailField.value,
@@ -22,7 +49,7 @@ loginButton.addEventListener("click", function () {
   })
     .then((response) => {
       // Si la réponse n'est pas un code 200, on lève une erreur
-      if (response.status != 200) {
+      if (response.status !== 200) {
         throw new Error();
       } else {
         // Sinon, on récupère le corps de la réponse (le token JWT)
@@ -46,3 +73,10 @@ loginButton.addEventListener("click", function () {
     });
 });
 
+// Ajoutez un gestionnaire d'événement pour la soumission du formulaire
+loginForm.addEventListener('submit', function(e) {
+  // Vérifiez si les champs sont vides
+  if (!checkFields()) {
+    e.preventDefault();
+  }
+});
