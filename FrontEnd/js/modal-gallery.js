@@ -38,7 +38,7 @@ if (user != null) {
 
   document.addEventListener("click", (event) => {
     // Appuyer sur mode édition
-    if (event.target.classList.contains("edition")) {
+    if (event.target.classList.contains("modifyProject")) {
       // Créer le background si il n'existe pas
       if (!document.querySelector(".background")) {
         // Créer le background

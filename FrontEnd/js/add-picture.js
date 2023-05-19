@@ -40,7 +40,7 @@ function createModaleAddPhoto() {
   const h2 = document.createElement("h2");
   h2.innerText = "Ajout photo";
 
-  // AJouter le h2 à modaleAddPhoto
+  // Ajouter le h2 à modaleAddPhoto
   modaleAddPhoto.appendChild(h2);
 
   // Créer le form
@@ -138,10 +138,29 @@ function createModaleAddPhoto() {
 
   // Ajouter au main
   document.querySelector("main").appendChild(modaleAddPhoto);
+
+  // Gérer l'état du bouton en fonction des champs remplis
+  const inputs = [inputTitlePhoto, select];
+  function updateButtonState() {
+    const isFormValid = inputs.every((input) => input.value.trim() !== "");
+    submitAddPhoto.disabled = !isFormValid || picture.src === "assets/images/picture.jpg";
+    submitAddPhoto.style.background = submitAddPhoto.disabled ? "gray" : ""; // Appliquer la couleur de fond gris si le bouton est désactivé
+    
+  }
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", updateButtonState);
+  });
+
+  // Vérifier l'état du bouton lorsque la photo est chargée
+  buttonAjouterPhoto.addEventListener("click", () => {
+    setTimeout(updateButtonState, 100);
+  });
+
+  updateButtonState();
 }
 
 // Retourner à la modal gallery
-
 document.addEventListener("click", (event) => {
   // Appuyer sur retourner
   if (event.target.classList.contains("fa-arrow-left")) {
