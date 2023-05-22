@@ -67,8 +67,8 @@ document.addEventListener("click", (event) => {
   }
 
   // Publier
-  if (event.target.classList.contains("save")) {
-    save();
+  if (event.target.classList.contains("submitAddPhoto")) {
+    save(works);
   }
 });
 
@@ -91,7 +91,6 @@ function chooseImage() {
 }
 
 function displayImagePicture() {
-  console.log("ici");
   // Créer l'image
   const img = document.createElement("img");
   img.classList.add("thePhoto");
@@ -208,7 +207,7 @@ function closeModales() {
     
       // Publier
       if (event.target.classList.contains("save")) {
-        save();
+        save(works);
       }
     });
     
@@ -216,22 +215,21 @@ function closeModales() {
       // créer un input de type "file"
       const input = document.createElement("input");
       input.type = "file";
-    
+
       // Ouvrir le gestionnaire afin de choisir l'image
       input.click();
-    
+
       // Écouter les changements
       input.addEventListener("change", (event) => {
         // récupérer le fichier sélectionné
         file = event.target.files[0];
-    
+
         // l'afficher
         displayImagePicture();
       });
     }
-    
+
     function displayImagePicture() {
-      console.log("ici");
       // Créer l'image
       const img = document.createElement("img");
       img.classList.add("thePhoto");
@@ -281,29 +279,11 @@ function closeModales() {
         document.querySelector(".modaleAddPhoto").remove();
       }
     }
-    
-    function save() {
-      for (let work of works) {
-        let formdata = new FormData();
-        formdata.append("image", work.image, work.image.name);
-        formdata.append("title", work.title);
-        formdata.append("category", work.category);
-    
-        fetch("http://localhost:5678/api/works", {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-          body: formdata,
-        }).catch((error) => console.log(error));
-      }
-    }
-    
+   
   }
 }
 
-function save() {
+function save(works) {
   for (let work of works) {
     let formdata = new FormData();
     formdata.append("image", work.image, work.image.name);
@@ -314,7 +294,7 @@ function save() {
       method: "POST",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: formdata,
     }).catch((error) => console.log(error));
